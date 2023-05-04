@@ -14,13 +14,16 @@ icon3: $assets.files.assets.shopping_cart-icon.svg
 icon4: $assets.files.assets.search-icon.svg
 avatar: $assets.files.assets.patrica.png
 
--- lp.dashboard: Instant, fee-free payments for small business.
-info: Pay and get paid in real-time with zero fees. Secure, streamlined, and super fast.
+-- lp.hero: Instant, fee-free payments for small business.
 cta-placeholder: Enter Your Work Email
 cta-label: Sign me up
 src: $assets.files.assets.dashboard.png
+cta-link: index.html
 
--- end: lp.dashboard
+Pay and get paid in real-time with zero fees. Secure, streamlined, and super
+fast.
+
+-- end: lp.hero
 
 -- lp.clients-container: Trusted by the top companies in this industry
 list-of-clients: $list-of-clients

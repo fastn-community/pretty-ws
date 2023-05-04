@@ -144,11 +144,12 @@ link5: Footer link 5
 
 
 
--- component dashboard:
+-- component hero:
 caption title:
-string info:
+body body:
 string cta-placeholder:
 string cta-label:
+string cta-link:
 ftd.image-src src:
 integer $width: $width
 
@@ -158,29 +159,54 @@ align-content: center
 background.solid: $inherited.colors.accent.secondary
 
 -- ftd.row:
+if: { ftd.device == "desktop" }
 padding-vertical.px: 170
 padding-horizontal.px: 20
 spacing.fixed.px: 125
 width: fill-container
-max-width.fixed.px: $dashboard.width
+max-width.fixed.px: $hero.width
 align-self: center
 
 -- ftd.column:
 
--- dashboard-info: $dashboard.title
-info: $dashboard.info
-cta-placeholder: $dashboard.cta-placeholder
-cta-label: $dashboard.cta-label
+-- hero-info: $hero.title
+info: $hero.body
+cta-placeholder: $hero.cta-placeholder
+cta-label: $hero.cta-label
+cta-link: $hero.cta-link
 
 -- end: ftd.column
 
--- ftd.image: $dashboard.src
+-- ftd.image: $hero.src
 
 -- end: ftd.row
 
+-- ftd.column:
+if: { ftd.device == "mobile" }
+padding-vertical.px: 48
+padding-horizontal.px: 24
+spacing.fixed.px: 48
+width: fill-container
+align-self: center
+
+-- ftd.column:
+
+-- hero-info: $hero.title
+info: $hero.body
+cta-placeholder: $hero.cta-placeholder
+cta-label: $hero.cta-label
+cta-link: $hero.cta-link
+
 -- end: ftd.column
 
--- end: dashboard
+-- ftd.image: $hero.src
+max-width: fill-container
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: hero
 
 
 
@@ -191,48 +217,72 @@ cta-label: $dashboard.cta-label
 
 
 
--- component dashboard-info:
+-- component hero-info:
 caption title:
 string info:
 string cta-placeholder:
 string cta-label:
+string cta-link:
 
 -- ftd.column:
 width: fill-container
 
--- ftd.text: $dashboard-info.title
+-- ftd.text: $hero-info.title
 role: $inherited.types.heading-large
 color: $inherited.colors.text-strong
 
--- ftd.text: $dashboard-info.info
+-- ftd.text: $hero-info.info
 margin-top.px: 24
 color: $inherited.colors.text-strong
 role: $inherited.types.copy-regular
 
 -- ftd.row:
+if: { ftd.device == "desktop" }
 margin-top.px: 40
+align-content: center
 
 -- ftd.text-input:
 margin-right.px: 8
 min-width.fixed.px: 240
-placeholder: $dashboard-info.cta-placeholder
+placeholder: $hero-info.cta-placeholder
 background.solid: transparent
 border-color: $inherited.colors.background.base
 border-width.px: 1 
 border-radius.px: 30
 padding.px: 15
+color: $inherited.colors.text
 
--- ftd.column:
-
--- cta-button: $dashboard-info.cta-label
-
--- end: ftd.column
+-- cta-button: $hero-info.cta-label
+link: $hero-info.cta-link
 
 -- end: ftd.row
 
+-- ftd.column:
+if: { ftd.device == "mobile" }
+margin-top.px: 40
+spacing.fixed.px: 24
+width: fill-container
+align-content: center
+
+-- ftd.text-input:
+margin-right.px: 8
+width: fill-container
+placeholder: $hero-info.cta-placeholder
+background.solid: transparent
+border-color: $inherited.colors.background.base
+border-width.px: 1 
+border-radius.px: 30
+padding.px: 15
+color: $inherited.colors.text
+
+-- cta-button: $hero-info.cta-label
+link: $hero-info.cta-link
+
 -- end: ftd.column
 
--- end: dashboard-info
+-- end: ftd.column
+
+-- end: hero-info
 
 
 
