@@ -442,7 +442,6 @@ padding-vertical.px: $promo-banner.padding-vertical
 border-radius.px: 20
 padding-horizontal.px: 85
 width: fill-container
-max-width.fixed.px: $promo-banner.width
 align-self: center
 
 -- promo-banner-img:
@@ -464,7 +463,6 @@ padding-vertical.px: $promo-banner.padding-vertical
 border-radius.px: 20
 padding-horizontal.px: 85
 width: fill-container
-max-width.fixed.px: $promo-banner.width
 align-self: center
 
 -- promo-banner-info: $promo-banner.title

@@ -8,11 +8,6 @@
 header-width: 1440
 brand-name: Fastn
 login: false
-icon1: $assets.files.assets.heart-icon.svg
-icon2: $assets.files.assets.notifications-icon.svg
-icon3: $assets.files.assets.shopping_cart-icon.svg
-icon4: $assets.files.assets.search-icon.svg
-avatar: $assets.files.assets.patrica.png
 
 -- lp.hero: Instant, fee-free payments for small business.
 cta-placeholder: Enter Your Work Email
