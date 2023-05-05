@@ -1780,3 +1780,24 @@ children: $footer-wrapper.footer-child
 -- end: ftd.row
 
 -- end: footer-wrapper
+
+
+
+
+
+
+
+
+
+-- component centered-block:
+children blocks:
+
+-- ftd.column:
+width: fill-container
+max-width.fixed.px: $width
+children: $centered-block.blocks
+align-self: center
+
+-- end: ftd.column
+
+-- end: centered-block

@@ -29,6 +29,8 @@ Hopscotch is an all-in-one payments platform where businesses can connect, trans
 
 -- end: lp.generation
 
+-- lp.centered-block:
+
 -- lp.promo-banner: Easy payments  and invoicing
 cta-label: Sign me up
 bg-color: $inherited.colors.custom.four
@@ -59,6 +61,8 @@ cta-url: /
 Our dashboard is simple to navigate and packed with useful features. It also integrates seamlessly with accounting platforms like Quickbooks.
 
 -- end: lp.promo-banner
+
+-- end: lp.centered-block
 
 -- lp.feature-banner: Headaches are history
 banner-img: $assets.files.assets.history.svg
