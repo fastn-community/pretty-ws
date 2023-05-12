@@ -1,5 +1,6 @@
 -- import: fifthtry.github.io/ds-set1-typography as typo
 -- import: fastn-community.github.io/winter-cs as cs
+-- import: fastn-community.github.io/pretty-ws/common
 -- import: fastn/processors as pr
 
 
@@ -13,6 +14,7 @@ $processor$: pr.full-sitemap
 
 
 -- integer $width: 1180
+
 -- integer $current-slide: 1
 
 
@@ -27,7 +29,7 @@ $processor$: pr.full-sitemap
 -- component page:
 optional caption title:
 optional body body:
-string brand-name:
+string site-name:
 optional ftd.color bgcolor-landing-hero:
 children page-wrap:
 ftd.type-data types: $typo.types
@@ -35,12 +37,9 @@ ftd.color-scheme colors: $cs.main
 pr.toc-item list sections: $sitemap.sections
 integer header-width: $width
 boolean login: false
-optional ftd.image-src icon1:
-optional ftd.image-src icon2:
-optional ftd.image-src icon3:
-optional ftd.image-src icon4:
-optional ftd.image-src avatar:
 boolean breadcrumbs: false
+pr.toc-item list footer-links: $common.footer-links
+common.social-media list social-links: $common.social-links
 
 -- ftd.column:
 width: fill-container
@@ -50,24 +49,12 @@ align-content: center
 
 -- dark-mode-switcher-float:
 
--- header: $page.brand-name
+-- header: $page.site-name
 login: $page.login
 width: $page.header-width
-icon1: $page.icon1
-icon2: $page.icon2
-icon3: $page.icon3
-icon4: $page.icon4
-avatar: $page.avatar
 sections: $page.sections
 
 -- end: header
-
-
--- breadcrumbs:
-if: { page.breadcrumbs }
-width: 1440
-
--- end: breadcrumbs
 
 -- ftd.text: $page.title
 if: { $page.title != NULL }
@@ -85,51 +72,12 @@ children: $page.page-wrap
 
 -- end: ftd.column
 
--- footer:
-
--- footer-child1: Fastn
+-- footer: Fastn
 info: Stay in touch with everything you need
 copyright: Copyright ©2022. Fastn Inc.
-src1: $assets.files.assets.meta.svg
-src2: $assets.files.assets.figma.svg
-src3: $assets.files.assets.google.svg
-src4: $assets.files.assets.tweak.svg
-src5: $assets.files.assets.ball.svg
+footer-links: $page.footer-links
+social-links: $page.social-links
 
--- end: footer-child1
-
--- footer-wrapper:
-
--- footer-child2: Heading2
-link1: Footer link 1
-link2: Footer link 2
-link3: Footer link 3
-link4: Footer link 4
-link5: Footer link 5
-
--- end: footer-child2
-
--- footer-child2: Heading3
-link1: Footer link 1
-link2: Footer link 2
-link3: Footer link 3
-link4: Footer link 4
-link5: Footer link 5
-
--- end: footer-child2
-
--- footer-child2: Heading4
-link1: Footer link 1
-link2: Footer link 2
-link3: Footer link 3
-link4: Footer link 4
-link5: Footer link 5
-
--- end: footer-child2
-
--- end: footer-wrapper
-
--- end: footer
 
 -- end: ftd.column
 
@@ -139,50 +87,83 @@ link5: Footer link 5
 
 
 
-
-
-
-
-
 -- component hero:
 caption title:
 body body:
 string cta-placeholder:
-string cta-label:
+string cta-text:
 string cta-link:
 ftd.image-src src:
 integer $width: $width
 
 -- ftd.column:
 width: fill-container
-align-content: center
-background.solid: $inherited.colors.accent.secondary
+
+-- hero-desktop: $hero.title
+if: { ftd.device == "mobile" }
+body: $hero.body
+cta-placeholder: $hero.cta-placeholder
+cta-text: $hero.cta-text
+cta-link: $hero.cta-link
+src: $hero.src
+width: $hero.width
+
+-- hero-mobile: $hero.title
+if: { ftd.device != "mobile" }
+body: $hero.body
+cta-placeholder: $hero.cta-placeholder
+cta-text: $hero.cta-text
+cta-link: $hero.cta-link
+src: $hero.src
+width: $hero.width
+
+-- end: ftd.column
+
+-- end: hero
+
+
+-- component hero-desktop:
+caption title:
+body body:
+string cta-placeholder:
+string cta-text:
+string cta-link:
+ftd.image-src src:
+integer $width: $width
 
 -- ftd.row:
-if: { ftd.device == "desktop" }
 padding-vertical.px: 170
 padding-horizontal.px: 20
 spacing.fixed.px: 125
-width: fill-container
-max-width.fixed.px: $hero.width
-align-self: center
+
 
 -- ftd.column:
 
--- hero-info: $hero.title
-info: $hero.body
-cta-placeholder: $hero.cta-placeholder
-cta-label: $hero.cta-label
-cta-link: $hero.cta-link
+-- hero-info: $hero-desktop.title
+info: $hero-desktop.body
+cta-placeholder: $hero-desktop.cta-placeholder
+cta-text: $hero-desktop.cta-text
+cta-link: $hero-desktop.cta-link
 
 -- end: ftd.column
 
 -- ftd.image: $hero.src
+max-width: fill-container
 
 -- end: ftd.row
 
+-- end: hero-desktop
+
+-- component hero-mobile:
+caption title:
+body body:
+string cta-placeholder:
+string cta-text:
+string cta-link:
+ftd.image-src src:
+integer $width: $width
+
 -- ftd.column:
-if: { ftd.device == "mobile" }
 padding-vertical.px: 48
 padding-horizontal.px: 24
 spacing.fixed.px: 48
@@ -191,23 +172,20 @@ align-self: center
 
 -- ftd.column:
 
--- hero-info: $hero.title
-info: $hero.body
-cta-placeholder: $hero.cta-placeholder
-cta-label: $hero.cta-label
-cta-link: $hero.cta-link
+-- hero-info: $hero-mobile.title
+info: $hero-mobile.body
+cta-placeholder: $hero-mobile.cta-placeholder
+cta-text: $hero-mobile.cta-text
+cta-link: $hero-mobile.cta-link
 
 -- end: ftd.column
 
--- ftd.image: $hero.src
+-- ftd.image: $hero-mobile.src
 max-width: fill-container
 
 -- end: ftd.column
 
--- end: ftd.column
-
--- end: hero
-
+-- end: hero-mobile
 
 
 
@@ -221,7 +199,7 @@ max-width: fill-container
 caption title:
 string info:
 string cta-placeholder:
-string cta-label:
+string cta-text:
 string cta-link:
 
 -- ftd.column:
@@ -252,7 +230,7 @@ border-radius.px: 30
 padding.px: 15
 color: $inherited.colors.text
 
--- cta-button: $hero-info.cta-label
+-- cta-button: $hero-info.cta-text
 link: $hero-info.cta-link
 
 -- end: ftd.row
@@ -275,7 +253,7 @@ border-radius.px: 30
 padding.px: 15
 color: $inherited.colors.text
 
--- cta-button: $hero-info.cta-label
+-- cta-button: $hero-info.cta-text
 link: $hero-info.cta-link
 
 -- end: ftd.column
@@ -417,15 +395,15 @@ $generation.body
 -- component promo-banner:
 caption title:
 body body:
-boolean img-order-left: false
+boolean left: false
 ftd.image-src src:
-ftd.color bg-color:
+ftd.color bg-color: $inherited.colors.custom.four
 optional ftd.image-src cta-icon:
-string cta-label:
-string cta-url:
+string cta-text:  Sign me up
+string cta-url: /
 children promo-banner-wrap:
-optional integer padding-vertical: 50
-optional integer padding-horizontal: 85
+integer padding-vertical: 50
+integer padding-horizontal: 85
 optional integer padding-left:
 optional integer padding-right:
 integer width: $width
@@ -436,7 +414,7 @@ align-content: center
 margin-bottom.px: 30
 
 -- ftd.row:
-if: { promo-banner.img-order-left }
+if: { promo-banner.left }
 background.solid: $promo-banner.bg-color
 padding-vertical.px: $promo-banner.padding-vertical
 border-radius.px: 20
@@ -444,11 +422,14 @@ padding-horizontal.px: 85
 width: fill-container
 align-self: center
 
--- promo-banner-img:
+-- ftd.image: 
 src: $promo-banner.src
+width: auto
+height: auto
+
 
 -- promo-banner-info: $promo-banner.title
-cta-label: $promo-banner.cta-label
+cta-text: $promo-banner.cta-text
 cta-url: $promo-banner.cta-url
 body: $promo-banner.body
 
@@ -457,7 +438,7 @@ body: $promo-banner.body
 -- end: ftd.row
 
 -- ftd.row:
-if: { !promo-banner.img-order-left }
+if: { !promo-banner.left }
 background.solid: $promo-banner.bg-color
 padding-vertical.px: $promo-banner.padding-vertical
 border-radius.px: 20
@@ -465,15 +446,33 @@ padding-horizontal.px: 85
 width: fill-container
 align-self: center
 
--- promo-banner-info: $promo-banner.title
-cta-label: $promo-banner.cta-label
-cta-url: $promo-banner.cta-url
-body: $promo-banner.body
 
--- end: promo-banner-info
+-- ftd.column:
+width: fill-container
+align-self: center
+color: $inherited.colors.text
 
--- promo-banner-img:
+-- ftd.text: $promo-banner.title
+role: $inherited.types.heading-medium
+max-width.fixed.percent: 75
+
+-- ftd.text:
+role: $inherited.types.copy-regular
+margin-top.px: 32
+margin-bottom.px: 40
+max-width.fixed.percent: 85
+
+$promo-banner.body
+
+-- cta-button: $promo-banner.cta-text
+link: $promo-banner.cta-url
+
+-- end: ftd.column
+
+-- ftd.image: 
 src: $promo-banner.src
+width: auto
+height: auto
 
 -- end: ftd.row
 
@@ -492,7 +491,7 @@ src: $promo-banner.src
 
 -- component promo-banner-info:
 caption title:
-string cta-label:
+string cta-text:
 string cta-url:
 body body:
 children cta-button:
@@ -517,7 +516,7 @@ $promo-banner-info.body
 
 -- ftd.column:
 
--- cta-button: $promo-banner-info.cta-label
+-- cta-button: $promo-banner-info.cta-text
 link: $promo-banner-info.cta-url
 
 -- end: cta-button
@@ -537,19 +536,7 @@ link: $promo-banner-info.cta-url
 
 
 
--- component promo-banner-img:
-ftd.image-src src:
 
--- ftd.column:
-width: fill-container
-
--- ftd.image: $promo-banner-img.src
-width: auto
-height: auto
-
--- end: ftd.column
-
--- end: promo-banner-img
 
 
 
@@ -568,40 +555,31 @@ optional ftd.image-src bg-img:
 integer width: $width
 
 -- ftd.column:
-width: fill-container
-align-content: center
-background.solid: $inherited.colors.background.base
-
--- ftd.column:
 max-width.fixed.px: $width
 width: fill-container
 align-self: center
 padding-top.px: 115
 padding-bottom.px: 125
 align-content: center
-
--- ftd.column:
-padding-bottom.px: 50
-align-content: center
+color: $inherited.colors.text
+background.solid: $inherited.colors.background.base
 
 -- ftd.text: $feature-banner.title
 role: $inherited.types.heading-large
-color: $inherited.colors.text
+text-align: center
 
 -- ftd.text: 
 role: $inherited.types.copy-large
-color: $inherited.colors.text
+padding-bottom.px: 50
+text-align: center
 
 $feature-banner.info
 
--- end: ftd.column
 
 -- ftd.image: $feature-banner.banner-img
 width: auto
 height: auto
 padding-horizontal.px: 58
-
--- end: ftd.column
 
 -- end: ftd.column
 
@@ -618,11 +596,9 @@ padding-horizontal.px: 58
 
 -- component savings:
 caption title:
-string info1:
-string info2:
-string promo-banner-count:
+body body:
+string count:
 ftd.image-src src1:
-ftd.image-src src2:
 integer width: $width
 
 -- ftd.column:
@@ -638,19 +614,37 @@ align-self: center
 
 -- ftd.column:
 align-self: center
-max-width.fixed.percent: 50
+spacing.fixed.px: 24
+padding-left.px: 165
+padding-right.px: 110
+width: fill-container
+color: $inherited.colors.text-strong
 
--- savings-info: $savings.title
-info1: $savings.info1
-info2: $savings.info2
-promo-banner-count: $savings.promo-banner-count
+-- ftd.text: $savings.title
+width.fixed.percent: 90
+role: $inherited.types.heading-large
+
+-- ftd.text: 
+text: $savings.body
+role: $inherited.types.copy-regular
+
+
+-- ftd.text: $savings.count
+role: $inherited.types.heading-small
+
+-- ftd.image: 
 src: $savings.src1
+anchor: parent
+left.px: 0
+top.px: 238
 
 -- end: ftd.column
+
 
 -- ftd.column:
 max-width.fixed.percent: 50
 width: fill-container
+
 -- info-blocks:
 
 -- end: info-blocks
@@ -765,7 +759,7 @@ saved/year in payment processing time
 caption title:
 string info1:
 string info2:
-string promo-banner-count:
+string count:
 ftd.image-src src:
 
 -- ftd.column:
@@ -788,7 +782,7 @@ role: $inherited.types.copy-regular
 color: $inherited.colors.text-strong
 role: $inherited.types.copy-regular
 
--- ftd.text: $savings-info.promo-banner-count
+-- ftd.text: $savings-info.count
 role: $inherited.types.heading-small
 color: $inherited.colors.text-strong
 
@@ -1168,50 +1162,46 @@ $question-accordion.body
 
 
 
+
+
+
+
+
 -- component newsletter:
 caption title:
-string cta-label:
-string cta-placeholder:
-optional string info:
+string cta-txt: Sign me up
+string cta-url: /
+string cta-placeholder: Enter your work email...
+optional body body:
 optional ftd.image-src cta-icon:
-optional ftd.image-src info-icon:
+optional ftd.image-src info-icon: 
 integer width: $width
-ftd.color bg-color: $inherited.colors.custom.four
+ftd.color bg-color: $inherited.colors.background.step-1
 
 -- ftd.column:
 width: fill-container
 align-content: center
-background.solid: $newsletter.bg-color
 
 -- ftd.row:
-max-width.fixed.px: $newsletter.width
-padding-vertical.px: 60
-align-self: center
-
--- ftd.row:
+margin-vertical.px: 60
 padding-vertical.px: 72
 padding-horizontal.px: 75
-background.solid: $inherited.colors.background.step-1
+background.solid: $newsletter.bg-color
 width: fill-container
 border-radius.px: 20
-
--- ftd.column:
-padding-right.px: 16
-width.fixed.percent: 50
+max-width.fixed.px: $newsletter.width
+align-self: center
+spacing: space-between
 
 -- ftd.text: $newsletter.title
 role: $inherited.types.heading-small
 color: $inherited.colors.text-strong
-
--- end: ftd.column
+padding-right.px: 16
 
 -- ftd.column:
 
 -- ftd.row:
 spacing.fixed.px: 20
-
--- ftd.column:
-spacing.fixed.px: 15
 
 -- ftd.text-input:
 placeholder: $newsletter.cta-placeholder
@@ -1219,6 +1209,11 @@ padding-vertical.px: 15
 padding-horizontal.px: 15
 border-radius.px: 30
 width.fixed.px: 310
+
+-- cta-button: $newsletter.cta-txt
+link: $newsletter.cta-url
+
+-- end: ftd.row
 
 -- ftd.row: 
 spacing.fixed.px: 10
@@ -1228,7 +1223,9 @@ align-content: center
 if: { newsletter.info-icon != NULL }
 src: $newsletter.info-icon
 
--- ftd.text: $newsletter.info
+-- ftd.text:
+if: { newsletter.body != NULL }
+text: $newsletter.body
 role: $inherited.types.label-small
 color: $inherited.colors.text-strong
 
@@ -1236,19 +1233,14 @@ color: $inherited.colors.text-strong
 
 -- end: ftd.column
 
--- cta-button: $newsletter.cta-label
-
--- end: ftd.row
-
--- end: ftd.column
-
--- end: ftd.row
-
 -- end: ftd.row
 
 -- end: ftd.column
 
 -- end: newsletter
+
+
+
 
 
 
@@ -1433,15 +1425,10 @@ align-self: center
 
 
 -- component header:
-caption brand-name:
+caption site-name:
 integer width: $width
 pr.toc-item list sections: 
 boolean login: false
-ftd.image-src icon1:
-ftd.image-src icon2:
-ftd.image-src icon3:
-ftd.image-src icon4:
-ftd.image-src avatar:
 
 -- ftd.column:
 width: fill-container
@@ -1454,7 +1441,7 @@ align-self: center
 width: fill-container
 max-width.fixed.px: $header.width
 
--- ftd.text: $header.brand-name
+-- ftd.text: $header.site-name
 role: $inherited.types.heading-small
 color: $inherited.colors.text-strong
 align-self: center
@@ -1501,27 +1488,7 @@ color: $inherited.colors.text
 
 -- end: ftd.text-input
 
--- ftd.row:
-spacing.fixed.px: 24
 
--- image:
-src: $header.icon1
-
--- image:
-src: $header.icon2
-
--- image:
-src: $header.icon3
-
--- image:
-src: $header.icon4
-
--- end: ftd.row
-
--- image:
-src: $header.avatar
-width: 48
-height: 48
 
 -- end: ftd.row
 
@@ -1540,38 +1507,21 @@ height: 48
 
 
 
--- component image:
-optional ftd.image-src src:
-integer width: 20
-integer height: 20
-
--- ftd.image:
-if: { image.src != NULL }
-src: $image.src
-width.fixed.px: $image.width
-height.fixed.px: $image.height
-
--- end: image
-
-
-
-
-
-
-
-
-
-
 -- component header-links:
 pr.toc-item sections:
 
 -- ftd.column:
-
--- ftd.text: $header-links.sections.title
 role: $inherited.types.copy-regular
 color: $inherited.colors.text-strong
+
+-- ftd.text: $header-links.sections.title
+if: { header-links.sections.url != NULL }
 color if { header-links.sections.is-active }: $inherited.colors.text-strong
 link: $header-links.sections.url
+
+-- ftd.text: $header-links.sections.title
+if: { header-links.sections.url == NULL }
+color if { header-links.sections.is-active }: $inherited.colors.text-strong
 
 -- end: ftd.column
 
@@ -1586,59 +1536,6 @@ link: $header-links.sections.url
 
 
 
--- component breadcrumbs:
-integer width: $width
-
--- ftd.column: 
-width: fill-container
-
--- ftd.row:
-width: fill-container
-spacing.fixed.px: 10
-max-width.fixed.px: $breadcrumbs.width
-padding-left.px: 50
-padding-top.px: 50
- 
--- ftd.text: Breadcrumbs
-role: $inherited.types.label-large
-color: $inherited.colors.text
-align-self: center
-
--- ftd.image:
-src: $assets.files.assets.right-arrow-icon.svg
-align-self: center
-
--- ftd.text: Breadcrumbs
-role: $inherited.types.label-large
-color: $inherited.colors.text
-align-self: center
-
--- ftd.image:
-src: $assets.files.assets.right-arrow-icon.svg
-align-self: center
-
--- ftd.text: Breadcrumbs
-role: $inherited.types.label-large
-color: $inherited.colors.text
-align-self: center
-
--- ftd.image:
-src: $assets.files.assets.right-arrow-icon.svg
-align-self: center
-
--- ftd.text: Breadcrumbs
-role: $inherited.types.label-large
-color: $inherited.colors.accent.primary
-align-self: center
-
--- end: ftd.row
-
--- end: ftd.column 
-
--- end: breadcrumbs
-
-
-
 
 
 
@@ -1647,6 +1544,11 @@ align-self: center
 
 
 -- component footer:
+caption title: 
+string copyright:
+string info:
+pr.toc-item list footer-links: $common.footer-links
+common.social-media list social-links: $common.social-links
 children footer-wrap:
 integer $width: $width
 
@@ -1660,7 +1562,46 @@ max-width.fixed.px: $footer.width
 width: fill-container
 align-self: center
 padding-vertical.px: 100
-children: $footer.footer-wrap
+
+-- ftd.column:
+min-width.fixed.px: 305
+
+-- ftd.text: $footer.title
+role: $inherited.types.heading-small
+margin-bottom.px: 24
+
+-- ftd.text: $footer.info
+role: $inherited.types.copy-small
+
+-- ftd.row:
+margin-vertical.px: 40
+spacing.fixed.px: 24
+
+-- ftd.image:
+$loop$: $footer.social-links as $obj
+src: $obj.src
+padding-left.px: 10
+cursor: pointer
+link: $obj.link
+
+-- end: ftd.row
+
+-- ftd.text: $footer.copyright
+role: $inherited.types.fine-print
+
+-- end: ftd.column
+
+
+-- ftd.row:
+width: fill-container
+
+-- footer-list: $obj.title
+url: $obj.url
+is-active: $obj.is-active
+children: $obj.children
+$loop$: $footer.footer-links as $obj
+
+-- end: ftd.row
 
 -- end: ftd.row
 
@@ -1671,13 +1612,40 @@ children: $footer.footer-wrap
 
 
 
+-- component footer-list:
+caption title:
+optional string url:
+boolean is-active:
+pr.toc-item list children:
 
+-- ftd.column:
+width: fill-container
+
+-- ftd.text: $footer-list.title
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+link: $footer-list.url
+
+-- ftd.column:
+if: { !ftd.is_empty(footer-list.children) }
+
+-- footer-list: $obj.title
+url: $obj.url
+is-active: $obj.is-active
+children: $obj.children
+$loop$: $footer-list.children as $obj
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: footer-list
 
 
 
 
 -- component footer-child1:
-caption brand-name:
+caption site-name:
 string info:
 string copyright:
 ftd.image-src src1:
@@ -1689,7 +1657,7 @@ ftd.image-src src5:
 -- ftd.column:
 min-width.fixed.px: 305
 
--- ftd.text: $footer-child1.brand-name
+-- ftd.text: $footer-child1.site-name
 role: $inherited.types.heading-small
 margin-bottom.px: 24
 
