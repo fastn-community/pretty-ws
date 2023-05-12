@@ -6,61 +6,27 @@
 
 -- lp.page:
 header-width: 1440
-brand-name: Fastn
+site-name: Fastn
 login: false
 
--- lp.hero: Instant, fee-free payments for small business.
-cta-placeholder: Enter Your Work Email
-cta-label: Sign me up
-src: $assets.files.assets.dashboard.png
-cta-link: index.html
-
-Pay and get paid in real-time with zero fees. Secure, streamlined, and super
-fast.
-
--- end: lp.hero
-
--- lp.clients-container: Trusted by the top companies in this industry
-list-of-clients: $list-of-clients
-
--- lp.generation: Built for the next generation of small business
-
-Hopscotch is an all-in-one payments platform where businesses can connect, transact, and grow together.
-
--- end: lp.generation
 
 -- lp.centered-block:
 
 -- lp.promo-banner: Easy payments  and invoicing
-cta-label: Sign me up
-bg-color: $inherited.colors.custom.four
 src: $assets.files.assets.invoicing.png
-cta-url: /
 
 Pay and get paid like never before. Auto-generate promo-banners, send reminders, schedule payments, and instantly access money when someone pays you.
 
--- end: lp.promo-banner
-
 -- lp.promo-banner: Better cash control with our flow
-img-order-left: true
-cta-label: Sign me up
-bg-color: $inherited.colors.custom.four
+left: true
 src: $assets.files.assets.cash_control.png
-cta-url: /
 
 Can’t wait to get paid? Fastn Flow helps you avoid gaps in cash flow, stay flexible, and grow your business on your terms.
 
--- end: lp.promo-banner
-
 -- lp.promo-banner: Smart dashboard, powerful integrations
-cta-label: Sign me up
-bg-color: $inherited.colors.custom.four
 src: $assets.files.assets.smart_dashboard.png
-cta-url: /
 
 Our dashboard is simple to navigate and packed with useful features. It also integrates seamlessly with accounting platforms like Quickbooks.
-
--- end: lp.promo-banner
 
 -- end: lp.centered-block
 
@@ -69,17 +35,15 @@ banner-img: $assets.files.assets.history.svg
 
 Easily manage what’s coming in and going out.
 
--- end: lp.feature-banner
 
 -- lp.savings: See how much faster you can get paid with Fastn
-info1: Use our calculator to see how many days we can free up in cash flow for your business.
-info2: How many promo-banners do you send each month?
-promo-banner-count: 50
+count: 50
 src1: $assets.files.assets.arrow.svg
-src2: $assets.files.assets.savings.png
 width: 1440
 
--- end: lp.savings
+Use our calculator to see how many days we can free up in cash flow for your business.
+
+How many promo-banners do you send each month?
 
 -- lp.qoutes:
 id: qoutes-parent
@@ -150,10 +114,9 @@ questions: $questions
 dropdown-icon: $assets.files.assets.down.svg
 
 -- lp.newsletter: Freakishly simple. Downright useful. Ready to make the jump?
-cta-placeholder: Enter your work email...
-cta-label: Sign me up
-info: Sign up in 2 minutes
 info-icon: $assets.files.assets.okay.svg
+
+Sign up in 2 minutes
 
 -- end: lp.newsletter
 
